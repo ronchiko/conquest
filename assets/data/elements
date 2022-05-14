@@ -1,0 +1,47 @@
+
+elem Arcane
+	COLOR MAGENTA
+	Fire 0.9
+	Water 0.9
+	Nature 0.9
+	Earth 0.9
+
+elem Fire
+	COLOR BOLD_RED
+	Water 0.5
+	Nature 2.0
+	Arcane 0.9
+
+elem Water
+	COLOR BLUE
+	Fire 2.0
+	Nature 0.5
+	Arcane 0.9
+
+elem Nature
+	COLOR GREEN
+	Fire 0.5
+	Arcane 0.9
+	Earth 2.0
+
+elem Earth
+	COLOR YELLOW
+	Fire 2.0
+	Arcane 0.9
+	Nature 0.5
+
+elem Demonic
+	COLOR RED
+	Water 0.5
+	Nature 0.5
+	Holy 2.0
+
+elem Holy
+	COLOR BOLD_YELLOW
+	Dark 2.0
+	Demonic 0.5
+
+elem Dark
+	COLOR BOLD_BLACK
+	Holy 2.0
+

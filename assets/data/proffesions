@@ -1,0 +1,78 @@
+
+# A proffesion is defined we like so
+# prof <name>
+#	STT <stat_name> <modifer>
+#	EQP <equipment_kind> <equipment_stat> <*/+/-><modifer>
+#
+# equipment_kind = 
+#	Generic kinds: WEAPON/ARMOR/OFFHAND/ARTEFACT/RING/NECKLACE/HEADGEAR/GLOVES
+#	Weapons kinds: SWORD/STAFF/AXE/DAGGER/ORB/SPEAR/SCYTH
+#	Offhand kinds: SHIELD/SWORD/DAGGER/ORB
+#	Armour  kinds: ROBE/A_LIGHT/A_HEAVY/A_GENRIC
+#	Helment kinds: HELMET/MASK/CROWN
+#
+# equipment_stat = 
+#	DMG - The damage the equipment
+#	DEF - The defence the equipment
+#	PRC - The price of the equipment
+#
+# About defence & damage
+# 	: The stat the the defence & damage stats modify on a character is selected by the equipment itself. 
+# Make sure to end with an empty line
+# Usualy a proffesion should have a total of +1 stat modifers
+
+prof Assasian
+	STT 	STLH +2
+	STT 	FAME -1
+	STT	RES  -1
+	EQP	DAGGER DMG +1
+	EQP	AXE DMG -1
+
+prof Archer
+	STT	SPD +2
+	STT	INT +1
+	STT	DEFC -1
+	STT	RES -1
+	STT	STRG -1
+	EQP	BOW DMG +2
+	EQP	CROSSBOW DMG +2
+	EQP	AXE DMG -2
+	EQP	SCYTH DMG -2
+
+prof Berserker
+	STT	STRG +2
+	STT	INT  -2
+	+Beserkers_Rage		# Add move
+	EQP	AXE DMG +3
+	EQP	STAFF DMG -2
+
+prof Knight
+	STT	FAME 1
+	STT	DEFC 1
+	STT	HP 1
+	STT	SPD -2
+	STT	STLH -1
+	EQP	DAGGER DMG -1
+	EQP	ORB DMG -1
+	EQP	BOW DMG -1
+	EQP	SWORD DMG +1
+	EQP	SHIELD DEF +2
+
+prof Mage
+	STT	RES +1
+	STT	INT +1
+	EQP	STAFF DEF +1
+
+prof Merchant
+	STT	ALL -1
+	STT	LUCK +3
+	EQP	ALL PRC *0.75
+	+Merchants_Charm
+
+prof Warrior
+	STT	STRG +1
+	STT	DEFC +1
+	STT	STLH -2
+	EQP	SWORD DMG +2
+	EQP	ORB DMG -1
+	EQP	STAFF DMG -1	
