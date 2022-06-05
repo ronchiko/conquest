@@ -1,9 +1,10 @@
 
 #include <cstring>
 #include <cmath>
-#include "character.h"
 
+#include "character.h"
 #include "parsing.h"
+#include "input.h"
 
 enum Menu_e {
 	MENU_NAME,
@@ -39,19 +40,19 @@ SelectionBox<T>::SelectionBox(int w, int h, std::vector<T*>& c) : m_Scroll(0), m
 template<class T>
 void SelectionBox<T>::draw(Screen& screen, int x, int y, bool highlight) const {
 	
-	int _color = color(highlight ? COLOR_BLUE : COLOR_WHITE, COLOR_BLACK, highlight);
+	int _color = color(highlight ? Color::Blue : Color::White, Color::Black, highlight);
 	screen.drawRect(x, y, m_Width, m_Height, "#-|", _color);
 
 	for(int i = 0; i < m_Height - 2; i++){
 		if(i + m_Scroll >= m_Collection.size()) break;
 		
 		for(int q = 0; q < m_Width - 2; q++)
-			screen.draw(x + q + 1, y + 1 + i, ' ');
+			screen.draw(x + q + 1, y + 1 + i, ' ', Color::White);
 		
 		bool selected = m_Selected == i + m_Scroll;
 		const char* name = m_Collection[i + m_Scroll]->getName();
 	        int center = (m_Width - 2 - strlen(name)) >> 1;
-		_color = color(selected ? COLOR_CYAN : COLOR_WHITE, COLOR_BLACK, selected & highlight);
+		_color = color(selected ? Color::Cyan : Color::White, Color::Black, selected & highlight);
 		screen.draw(x + center + 1, y + i + 1, name, _color);
 	}
 }
@@ -68,8 +69,8 @@ void SelectionBox<T>::move(int x) {
 
 Character* create_character(Screen& screen) {
 	
-	screen.fillRect(0, 0, screen.width(), screen.height(), ' ', color(COLOR_WHITE, COLOR_BLACK));
-	screen.draw(5, 3, "Create a Character", color(COLOR_YELLOW, COLOR_BLACK, TRUE));	
+	screen.fillRect(0, 0, screen.width(), screen.height(), ' ', color(Color::White, Color::Black));
+	screen.draw(5, 3, "Create a Character", color(Color::Yellow, Color::Black, true));	
 	
 
 	char name[MAX_NAME_LENGTH + 1] = {0};
@@ -81,7 +82,7 @@ Character* create_character(Screen& screen) {
 	bool picking = false;
 	int raceIndex = 0, raceScroll = 0;
 	int proffesionIndex = 0, proffesionScroll = 0;
-	int BOX_H = (LINES >> 1) & ~0x1;
+	int BOX_H = (screen.height() >> 1) & ~0x1;
 		
 	SelectionBox<Race> raceBox(20, BOX_H, Race::all);
        	SelectionBox<Proffesion> proffesionBox(20, BOX_H, Proffesion::all);
@@ -92,19 +93,20 @@ Character* create_character(Screen& screen) {
 
 	while(1) {
 		/********************** DRAW NAME TEXT BOX **********************/
-		screen.draw(6, 7, "Name: ", color(option == MENU_NAME ? COLOR_BLUE : COLOR_WHITE, 
-					COLOR_BLACK, option == MENU_NAME));
-		screen.draw(12, 7, name);
-		for(int i = 0; i < MAX_NAME_LENGTH - nameLength; i++) screen.draw(12 + nameLength + i, 7, ' ');
+		screen.draw(6, 7, "Name: ", color(option == MENU_NAME ? Color::Blue : Color::White, 
+					Color::Black, option == MENU_NAME));
+		screen.draw(12, 7, name, Color::White);
+		for(int i = 0; i < MAX_NAME_LENGTH - nameLength; i++) 
+			screen.draw(12 + nameLength + i, 7,  ' ', Color::White);
 		if(option == 0){
 			if(nameLength < MAX_NAME_LENGTH)
-				screen.draw(12 + nameLength, 7, ' ', color(COLOR_WHITE, COLOR_WHITE));
+				screen.draw(12 + nameLength, 7, ' ', color(Color::White, Color::White));
 		}
 
 		// Draw race selection box
 		
 		bool selected = option == MENU_PROF_RACE && tabIndex == 0;
-		int _color = color( selected ? COLOR_BLUE : COLOR_WHITE, COLOR_BLACK, selected);
+		int _color = color( selected ? Color::Blue : Color::White, Color::Black, selected);
 		
 		/******************** DRAW BOXES ****************************/
 		screen.draw(7, 9, "Race", _color);
@@ -114,7 +116,7 @@ Character* create_character(Screen& screen) {
 		raceBox.draw(screen, 7, 10, selected);
 
 		selected = option == MENU_PROF_RACE && tabIndex == 1;
-		_color = color(selected ? COLOR_BLUE : COLOR_WHITE, COLOR_BLACK, selected);
+		_color = color(selected ? Color::Blue : Color::White, Color::Black, selected);
 
 		screen.draw(30, 9, "Proffesion", _color);
 
@@ -122,7 +124,7 @@ Character* create_character(Screen& screen) {
 		proffesionBox.draw(screen, 30, 10, selected);
 		
 		selected = option == MENU_PROF_RACE && tabIndex == 2;
-		_color = color(selected ? COLOR_BLUE : COLOR_WHITE, COLOR_BLACK, selected);
+		_color = color(selected ? Color::Blue : Color::White, Color::Black, selected);
 
 		screen.draw(54, 9, "Element", _color);
 
@@ -130,32 +132,37 @@ Character* create_character(Screen& screen) {
 		elemBox.draw(screen, 54, 10, selected);
 		
 		/************************* DRAW STATS ********************************/
-		screen.draw(screen.width() - 22, 10, "Character Stats", color(COLOR_WHITE, COLOR_BLACK, TRUE));
+		screen.draw(screen.width() - 22, 10, "Character Stats", color(Color::White, Color::Black, true));
 		for(int i = 0; i < STAT_MAX; i++){
-			_color = color(stats[i] < 20 ? COLOR_RED : stats[i] > 20 ? COLOR_GREEN : COLOR_WHITE, 
-					COLOR_BLACK, stats[i] != 20);
+			_color = color(stats[i] < 20 ? Color::Red : stats[i] > 20 ? Color::Green : Color::White, 
+					Color::Black, stats[i] != 20);
 			
 			std::string statName = getStatName((Stats)i);
-			char stringBuffer[10];
+			char stringBuffer[12];
 			char spaceBuffer[10];
 			
 			for(int i = 0; i < 8 - statName.length(); i++) spaceBuffer[i] = ' ';
 			spaceBuffer[8 - statName.length()] = 0;
+			
+			int successful = snprintf(stringBuffer, 11, "%s%s%d", statName.c_str(), spaceBuffer, stats[i]);
+			if(successful < 0) {
+				std::cout << "SNPrinf failed" << std::endl;
+			}
 
-			sprintf(stringBuffer, "%s%s%d", statName.c_str(), spaceBuffer, stats[i]);
+			stringBuffer[11]= 0;
 			screen.draw(screen.width() - 20, 11 + i, stringBuffer, _color);
 		}
 		
 		/******************************** START BUTTON *********************************/
-		_color = color(option == MENU_APPLY ? COLOR_BLUE : COLOR_WHITE, COLOR_BLACK, option == MENU_APPLY);
+		_color = color(option == MENU_APPLY ? Color::Blue : Color::White, Color::Black, option == MENU_APPLY);
 		screen.draw(screen.width() - 30, screen.height() - 4, "Start Adventure", _color); 
 		
 		screen.print();
 		
 		/********************************* HANDLE INPUT *********************************/
-		int in = getch();
-		switch(in){
-			case '\n':
+		KeyPress in = get_key();
+		switch(in.key){
+			case Key::Enter:
 				switch(option) {
 				case MENU_PROF_RACE:
 					if(picking) {
@@ -179,13 +186,13 @@ Character* create_character(Screen& screen) {
 					return nullptr;
 				}
 				break;
-			case KEY_RIGHT:
+			case Key::Right:
 				if(option == MENU_PROF_RACE && !picking) tabIndex = std::min(2, tabIndex + 1);
 				break;
-			case KEY_LEFT:
+			case Key::Left:
 				if(option == MENU_PROF_RACE && !picking) tabIndex = std::max(0, tabIndex - 1);
 				break;
-			case KEY_DOWN:
+			case Key::Down:
 				if(option == MENU_PROF_RACE && picking){
 					if(tabIndex == 0) raceBox.move(1);
 					else if(tabIndex == 2) elemBox.move(1);
@@ -197,7 +204,7 @@ Character* create_character(Screen& screen) {
 					if(option > MENU_APPLY) option = MENU_APPLY;
 				}
 				break;
-			case KEY_UP:
+			case Key::Up:
 				if(option == MENU_PROF_RACE && picking) {
 					if(tabIndex == 0) raceBox.move(-1);
 					else if(tabIndex == 2) elemBox.move(-1);
@@ -208,14 +215,14 @@ Character* create_character(Screen& screen) {
 					if(option < MENU_NAME) option = MENU_NAME;
 				}
 				break;
-			case KEY_BACKSPACE:
+			case Key::Backspace:
 				if(option == MENU_NAME && nameLength > 0){
 					name[--nameLength] = 0;
 				}
 				break;
 			default:
-				if(option == MENU_NAME && (isalnum(in) || in == ' ') && nameLength < MAX_NAME_LENGTH){
-					name[nameLength] = in;
+				if(option == MENU_NAME && (isalnum(in.glyph) || in.glyph == ' ') && nameLength < MAX_NAME_LENGTH){
+					name[nameLength] = in.glyph;
 					nameLength++;
 				}
 				break;

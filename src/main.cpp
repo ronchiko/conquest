@@ -10,8 +10,6 @@
 #include "title.h"
 #include "random.h"
 
-Random::_rand_instance Random::instance;
-
 void clean(void) {
 	for(Element* elem : Element::all) delete elem;	
 	for(Proffesion* prof : Proffesion::all) delete prof;

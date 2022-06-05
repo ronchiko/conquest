@@ -1,5 +1,6 @@
 
 #include "title.h"
+#include "input.h"
 #include "assets.h"
 
 const std::string gOptions[3] = {
@@ -15,29 +16,29 @@ TitleResult_e start_title(Screen& screen) {
 	int pointer = 0;
 	int origin = (screen.width() - titleArt.width()) >> 1;
 	while(1){
-		screen.drawAsset(titleArt, origin, 5, color(COLOR_YELLOW, COLOR_BLACK, TRUE));
+		screen.drawAsset(titleArt, origin, 5, color(Color::Yellow, Color::Black, true));
 
 		int startY = 20;
 		for(int i = 0; i < 3; i++)
 		{
-			int _color = pointer == i ? COLOR_BLUE : COLOR_WHITE;
+			Color _color = pointer == i ? Color::Blue : Color::White;
 			int x = (screen.width() - gOptions[i].length()) >> 1;
-			screen.draw(x, startY, gOptions[i], color(_color, COLOR_BLACK, 1));
+			screen.draw(x, startY, gOptions[i], color(_color, Color::Black, 1));
 			startY += 2;
 		}	
 
 		screen.print();
-		int in = getch();
-		switch(in) {
-			case KEY_DOWN: pointer++; break;
-			case KEY_UP: pointer--; break;
-			case '\n':	// Input
-				     switch(pointer){
-					case 0: return TITLE_NEW_GAME;
-					case 1: return TITLE_LOAD;
-					case 2: return TITLE_QUIT;
-				     }
-				     break;
+		KeyPress in = get_key();
+		switch(in.key) {
+			case Key::Down: pointer++; break;
+			case Key::Up: pointer--; break;
+			case Key::Enter:	// Input
+				    switch(pointer){
+						case 0: return TITLE_NEW_GAME;
+						case 1: return TITLE_LOAD;
+						case 2: return TITLE_QUIT;
+				    }
+				    break;
 		}
 
 		if(pointer < 0) pointer = 0;

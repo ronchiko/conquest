@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 #include "magic.h"
 #include "item.h"
 
@@ -69,7 +71,7 @@ public:
 	static void load(void);
 	static const Equipment* find(const std::string&);
 
-	Equipment(const char* name) : Item(name) { setConsumable(false); }
+	Equipment(const std::string& name) : Item(name) { setConsumable(false); }
 
         const char* getLabel(void) const;
 

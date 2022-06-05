@@ -1,27 +1,33 @@
 #pragma once
 
-#include <stdlib.h>
-#include <time.h>
+#include <random>
 
-#define FLT_ACCURACY 10000
+namespace Random {
+	constexpr std::int32_t FLT_ACCURACY = 10000;
+	constexpr std::uint32_t MAX_UINT_VALUE = 0xFFFFFFFF;  
 
-class Random {
-public:
-	class _rand_instance {
-		_rand_instance() {
-			srand(time(NULL));
-		}
-	};
+	using random = std::random_device;
+	
+	inline float value(void) {
+		static std::uniform_int_distribution<int32_t> distribution(0, FLT_ACCURACY);
 
-	static float value(void) {
-		return static_cast<float>(rand() % FLT_ACCURACY) / FLT_ACCURACY;
+		random random_device;
+
+		return static_cast<float>(distribution(random_device)) / FLT_ACCURACY;
 	}
-	static float float32(float min, float max) {
-		return (max - min) * random_value() + min;
+	
+	inline uint32_t rand(void) {
+		static std::uniform_int_distribution<uint32_t> dist(0, MAX_UINT_VALUE); 
+
+		random random_device;
+		return dist(random_device);
 	}
-	static int int32(int min, int max) {
+	
+	inline float float32(float min, float max) {
+		return (max - min) * value() + min;
+	}
+
+	inline int32_t int32(int32_t min, int32_t max) {
 		return (rand() % (max - min)) + min;
 	}
-
-	static _rand_instance _instance;
 };

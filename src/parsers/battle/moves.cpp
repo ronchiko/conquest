@@ -176,7 +176,7 @@ static bool PROP_SetCrit(Move* move, std::stringstream& line, const std::string&
 #define INT_PROP(name, prop) static bool PROP_##name(Move* move, std::stringstream& ss, const std::string& er) { \
 	int value; \
 	if(ss >> value){ move->prop = value; return true; } \
-	std::cout << er << ": Expected an integer\n"; }
+	std::cout << er << ": Expected an integer\n"; return false; }
 
 INT_PROP(SetAwait, await)
 INT_PROP(SetRest, rest)

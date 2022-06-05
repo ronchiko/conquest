@@ -13,8 +13,8 @@
 
 std::vector<Item*> Item::all;
 
-Item::Item(const char* _name) {
-	memcpy(name, _name, MAX_ITEM_NAME_LENGTH);
+Item::Item(const std::string& _name) {
+	memcpy(name, _name.c_str(), MAX_ITEM_NAME_LENGTH);
 	name[MAX_ITEM_NAME_LENGTH] = 0;
 	for(int i = 0; i < MAX_ITEM_NAME_LENGTH; i++) if(name[i] == '_') name[i] = ' ';
 }
@@ -150,7 +150,10 @@ bool Item::addPropertyFromLine(Item* item, const std::string& line, const std::s
 		ss.clear();
 	}
 	auto subparser = parser::maps::gItemSubparser.safe_get(prop);
-	if(subparser != nullptr) subparser(item, ss, error);
+	if(subparser != nullptr) 
+		return subparser(item, ss, error);
+	
+	return false;
 }
 
 void Item::load(void){

@@ -70,7 +70,7 @@ public:
 	static void load(void);
 	static const Item* find(const std::string&);
 	
-	Item(const char*);
+	Item(const std::string&);
 	
 	const char* getName(void) const { return name; }
 	ItemRating_e getRating(void) const { return rating; }

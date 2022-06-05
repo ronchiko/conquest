@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 #define ASSET_FOLDER "assets/"
 
 enum AssetType_e{

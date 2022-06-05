@@ -1,3 +1,9 @@
+# CMake
+bin/
+
+# Binary
+conquest
+
 # Prerequisites
 *.d
 

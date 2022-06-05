@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include "types.h"
+
 #define MAX_ELEMENT_NAME_LENGTH 16
 #define MAX_TRAIT_NAME_LENGTH 32
 
@@ -23,14 +25,14 @@ public:
 
 	Element(const char*);
 	
-	int getColor(void) const { return m_Color; }
-	void setColor(int color) { m_Color = color; }
+	Pixel getColor(void) const { return m_Color; }
+	void setColor(Pixel color) { m_Color = color; }
 	const char* getName(void) const { return name; }
 	float getEffectiveness(const Element*) const;
 private:
 	char name[MAX_ELEMENT_NAME_LENGTH + 1];
 	std::vector<ElementMatchup> m_Matchups;
-	int m_Color;
+	Pixel m_Color;
 };
 
 typedef Element Elements;
