@@ -10,6 +10,7 @@ out/
 
 # Binary
 conquest
+!include/conquest
 
 # Prerequisites
 *.d
