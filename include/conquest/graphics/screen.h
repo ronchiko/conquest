@@ -1,6 +1,6 @@
 #pragma once
 
-#include "conquest/assets.h"
+#include "conquest/graphics/asset.h"
 #include "conquest/graphics/rect.h"
 #include "conquest/graphics/types.h"
 

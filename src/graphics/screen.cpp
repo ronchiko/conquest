@@ -57,7 +57,7 @@ namespace conquest {
 
 	void Screen::draw(const v2<uint32> point, const Asset& asset, const Color foreground, const Color background)
 	{
-		if(ASSET_ART != asset.getType()) {
+		if(AssetType::Art != asset.getType()) {
 			return; // We only support drawing art assets.
 		}
 

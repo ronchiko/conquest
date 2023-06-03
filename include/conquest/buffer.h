@@ -1,7 +1,7 @@
 #pragma once
 
-#include <utility>
 #include <memory>
+#include <utility>
 
 #include "conquest/error.h"
 
@@ -29,7 +29,10 @@ namespace conquest {
 		Buffer(Buffer&& other) noexcept
 			: mSize(other.mSize)
 			, mData(other.mData)
-		{}
+		{
+			other.mSize = 0;
+			other.mData = nullptr;
+		}
 
 		Buffer& operator=(Buffer&& other) noexcept
 		{

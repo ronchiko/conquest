@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "conquest/assets.h"
+#include "conquest/graphics/asset.h"
 #include "conquest/input/input.h"
 
 namespace conquest {
@@ -12,7 +12,7 @@ namespace conquest {
 
 	TitleScreenResult startTitle(Screen& screen)
 	{
-		Asset titleArt("art/title.txt", ASSET_ART);
+		Asset titleArt = Asset::load("art/title.txt", AssetType::Art);
 
 		uint32 pointer = 0;
 		const uint32 origin = (screen.width() - titleArt.width()) >> 1;
