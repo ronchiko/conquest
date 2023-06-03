@@ -88,7 +88,7 @@ namespace conquest {
 			return InputResult{ InputType::Nothing, '\0' };
 		}
 
-		if (!record.Event.KeyEvent.bKeyDown) {
+		if(!record.Event.KeyEvent.bKeyDown) {
 			return InputResult{ InputType::Nothing, '\0' };
 		}
 

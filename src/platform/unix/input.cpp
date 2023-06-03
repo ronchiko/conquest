@@ -1,26 +1,41 @@
-#if defined(unix) || defined(__unix__) // This should only be compiled on unix machines.
-#include "conquest/input/types.h"
+// #if defined(unix) || defined(__unix__) // This should only be compiled on unix machines.
+#include "conquest/input/unix/input.h"
 
-#include <ncurses.h>
 #include <unordered_map>
+
+#include "conquest/platform/unix.h"
+#include "conquest/types.h"
 
 namespace conquest {
 
-	static const std::unordered_map<int32_t, InputType> KEYS{
-		{ KEY_LEFT, InpuType::Left },  { KEY_RIGHT, InputType::Right },			{ KEY_UP, InputType::Up },
+	static const std::unordered_map<uint32, InputType> KEYS{
+		{ KEY_LEFT, InputType::Left }, { KEY_RIGHT, InputType::Right },			{ KEY_UP, InputType::Up },
 		{ KEY_DOWN, InputType::Down }, { KEY_BACKSPACE, InputType::Backspace }, { KEY_ENTER, InputType::Enter },
 		{ '\n', InputType::Enter },
 	};
 
-	InputResult queryInput()
+	void InputManager::get()
 	{
-		int32_t input = getch();
+		uint32 input = getchar();
 		if(KEYS.find(input) == KEYS.end()) {
-			return InputResult{ .type = InputType::Character, .glyph.ascii = static_cast<char>(input) };
+			return InputResult{ InputType::Character, static_cast<char>(input) };
 		}
 
+		return InputResult{ KEYS[input], 0 };
+	}
 
-		return InputResult{ .type = KEYS[input], .glyph.ascii = 0 };
+	void InputManager::getAsync()
+	{
+		uint32 input = getch();
+		if(KEYS.find(input) == KEYS.end()) {
+			if(!iswalnum(input)) {
+				return InputResult{ InputType::Nothing, 0 };
+			}
+
+			return InputResult{ InputType::Character, static_cast<char>(input) };
+		}
+
+		return InputResult{ KEYS[input], 0 };
 	}
 }
 
