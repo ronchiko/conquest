@@ -12,7 +12,7 @@ namespace conquest {
 	class InputManager
 	{
 	public:
-		explicit InputManager() = default;
+		explicit InputManager();
 
 		/**
 		 * Gets the input from the console in a blocking manner.

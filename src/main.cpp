@@ -30,6 +30,8 @@ void clean(void)
 
 int main(void)
 {
+	using namespace conquest;
+
 	try {
 		// Element::load();
 		// Moves::load();
@@ -40,16 +42,13 @@ int main(void)
 
 		// Proffesion::load();
 		// Race::load();
-		std::cout << "Loading stuff" << std::endl;
-
 		conquest::Input::initialize();
-		auto s = conquest::Input::get();
-		std::cout << static_cast<uint32_t>(s.type) << ": " << s.glyph.ascii << std::endl;
+		Input::get();
 
-		std::cout << "Booting game" << std::endl;
 		conquest::Screen screen(conquest::v2<conquest::uint32>{ 0, 0 });
-
+		
 		std::cout << "Loading title screen" << std::endl;
+		
 		const auto titleResult = conquest::startTitle(screen);
 
 		if(titleResult == conquest::TitleScreenResult::Exit) {

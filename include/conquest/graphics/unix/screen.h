@@ -16,7 +16,7 @@ namespace conquest {
 		 * @param minimumSize - The minimum screen size required.
 		 */
 		explicit ConsoleScreen(v2<uint32> minimumSize);
-
+		
 		/**
 		 * Draws a pixel to the screen.
 		 *

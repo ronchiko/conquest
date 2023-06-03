@@ -1,9 +1,12 @@
-// #if defined(unix) || defined(__unix__) // This should only be compiled on unix machines.
+#if defined(unix) || defined(__unix__) // This should only be compiled on unix machines.
 #include "conquest/input/unix/input.h"
 
+#include <iostream>
+#include <cctype>
 #include <unordered_map>
 
 #include "conquest/platform/unix.h"
+#include "conquest/platform/unix/ncurses_init.h"
 #include "conquest/types.h"
 
 namespace conquest {
@@ -13,29 +16,43 @@ namespace conquest {
 		{ KEY_DOWN, InputType::Down }, { KEY_BACKSPACE, InputType::Backspace }, { KEY_ENTER, InputType::Enter },
 		{ '\n', InputType::Enter },
 	};
-
-	void InputManager::get()
-	{
-		uint32 input = getchar();
-		if(KEYS.find(input) == KEYS.end()) {
-			return InputResult{ InputType::Character, static_cast<char>(input) };
-		}
-
-		return InputResult{ KEYS[input], 0 };
-	}
-
-	void InputManager::getAsync()
-	{
-		uint32 input = getch();
-		if(KEYS.find(input) == KEYS.end()) {
-			if(!iswalnum(input)) {
+	
+	/**
+	 * Handle a InputResult according to a key input
+	 *
+	 * @param key - The key to turn into an input result.
+	 */
+	static InputResult handleInputKey(const uint32 input) {
+		const auto key = KEYS.find(input);
+		if(KEYS.end() == key) {
+			// If key is not readable we got no input.
+			if(ERR == input) {
 				return InputResult{ InputType::Nothing, 0 };
 			}
-
 			return InputResult{ InputType::Character, static_cast<char>(input) };
 		}
 
-		return InputResult{ KEYS[input], 0 };
+		return InputResult{ key->second, 0 };
+	}
+	
+	InputManager::InputManager() {
+		initializeNCurses();
+	}
+
+	InputResult InputManager::get()
+	{
+		auto result = handleInputKey(getch());
+		// Keep asking for input until a non Nothing key is recieved.
+		while(InputType::Nothing == result.type) {
+			std::cout << (uint32)result.type << std::endl;
+			result = handleInputKey(getch());
+		}
+		return result;
+	}
+
+	InputResult InputManager::getAsync()
+	{
+		return handleInputKey(getch());
 	}
 }
 

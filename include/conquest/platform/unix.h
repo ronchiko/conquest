@@ -6,4 +6,5 @@
 
 #include <ncurses.h>
 
+#include "conquest/platform/unix/ncurses_init.h"
 #include "conquest/platform/unix/ncurses_attribute.h"

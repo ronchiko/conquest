@@ -1,5 +1,6 @@
 #pragma once
 
+#include "conquest/types.h"
 #include "conquest/platform/unix.h"
 
 namespace conquest {
@@ -10,10 +11,12 @@ namespace conquest {
 	struct NCursesAttriubte
 	{
 	public:
-		explicit NCursesAttriubte(short attribute)
+		explicit NCursesAttriubte(uint32 attribute)
 			: mAttribute(attribute)
 		{
+			if (0 != mAttribute) {
 			attron(mAttribute);
+			}
 		}
 
 		NCursesAttriubte(const NCursesAttriubte&) = delete;
@@ -24,10 +27,12 @@ namespace conquest {
 
 		~NCursesAttriubte() noexcept
 		{
-			attroff(mAttribute);
+			if (0 != mAttribute) {
+				attroff(mAttribute);
+			}
 		}
 
 	private:
-		short mAttribute;
+		uint32 mAttribute;
 	};
 }

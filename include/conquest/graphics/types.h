@@ -13,9 +13,10 @@ namespace conquest {
 		Cyan,
 		Magenta,
 		Grey,
+		
 
-		// Bright colors
-		BrightRed = 0x8,
+		// Bright colors, starts at 9 because there is not bright black...
+		BrightRed = 0x9,
 		BrightGreen,
 		BrightYellow,
 		BrightBlue,
