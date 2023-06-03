@@ -1,11 +1,11 @@
-
+#if false
 #include <map>
 
 #include "assets.h"
-#include "weapons.h"
 #include "parsing.h"
+#include "weapons.h"
 
-#define PROP_Header(name) PROP_CastedHeader(name, Equipment, equipment)
+#define PROP_Header(name)  PROP_CastedHeader(name, Equipment, equipment)
 #define PROP_Wrapper(name) PROP_CastWrapper(name, Equipment)
 
 PROP_Header(Element) {
@@ -99,3 +99,5 @@ void Equipment::load(void) {
 
 	std::cout << "\033[32m[Loaded " << Equipment::all.size() << " general equipment]\033[0m\n";
 }
+
+#endif

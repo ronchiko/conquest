@@ -1,12 +1,13 @@
+#if false
 
+#include <cstring>
 #include <iostream>
 #include <sstream>
-#include <cstring>
 
 #include <unordered_map>
 
-#include "character.h"
 #include "assets.h"
+#include "character.h"
 
 #include "parsing.h"
 
@@ -113,3 +114,5 @@ void Proffesion::load(void) {
 	}
 	std::cout << "\033[32m[Loaded " << all.size() << " proffesions]\033[0m\n";
 }
+
+#endif

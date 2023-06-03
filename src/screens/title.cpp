@@ -1,49 +1,53 @@
 
-#include "title.h"
-#include "input.h"
-#include "assets.h"
+#include "conquest/scenes/title.h"
 
-const std::string gOptions[3] = {
-	"Start Game",
-	"Continue",
-	"Exit"
-};
+#include <string>
 
-TitleResult_e start_title(Screen& screen) {
-	
-	Asset titleArt("art/title.txt", ASSET_ART);
-	
-	int pointer = 0;
-	int origin = (screen.width() - titleArt.width()) >> 1;
-	while(1){
-		screen.drawAsset(titleArt, origin, 5, color(Color::Yellow, Color::Black, true));
+#include "conquest/assets.h"
+#include "conquest/input/input.h"
 
-		int startY = 20;
-		for(int i = 0; i < 3; i++)
-		{
-			Color _color = pointer == i ? Color::Blue : Color::White;
-			int x = (screen.width() - gOptions[i].length()) >> 1;
-			screen.draw(x, startY, gOptions[i], color(_color, Color::Black, 1));
-			startY += 2;
-		}	
+namespace conquest {
 
-		screen.print();
-		KeyPress in = get_key();
-		switch(in.key) {
-			case Key::Down: pointer++; break;
-			case Key::Up: pointer--; break;
-			case Key::Enter:	// Input
-				    switch(pointer){
-						case 0: return TITLE_NEW_GAME;
-						case 1: return TITLE_LOAD;
-						case 2: return TITLE_QUIT;
-				    }
-				    break;
+	const std::string OPTIONS[3] = { "Start Game", "Continue", "Exit" };
+
+	TitleScreenResult startTitle(Screen& screen)
+	{
+		Asset titleArt("art/title.txt", ASSET_ART);
+
+		uint32 pointer = 0;
+		const uint32 origin = (screen.width() - titleArt.width()) >> 1;
+		while(1) {
+			screen.draw(v2<uint32>{ origin, 5 }, titleArt, Color::BrightYellow, Color::Black);
+
+			uint32 startY = 20;
+			for(uint32 i = 0; i < 3; i++) {
+				const Color foregroundColor = pointer == i ? Color::BrightBlue : Color::White;
+				uint32 x = static_cast<uint32>((screen.width() - OPTIONS[i].length()) >> 1);
+				screen.draw(v2<uint32>{ x, startY }, OPTIONS[i], foregroundColor, Color::Black);
+				startY += 2;
+			}
+
+			screen.flush();
+			const auto input = Input::get();
+			switch(input.type) {
+			case InputType::Down:
+				pointer++;
+				break;
+			case InputType::Up:
+				pointer--;
+				break;
+			case InputType::Enter: // Input
+				return static_cast<TitleScreenResult>(pointer);
+			}
+
+			if(pointer < 0) {
+				pointer = 0;
+			}
+			if(pointer > 2) {
+				pointer = 2;
+			}
 		}
 
-		if(pointer < 0) pointer = 0;
-		if(pointer > 2) pointer = 2;
+		return TitleScreenResult::NewGame;
 	}
-
-	return TITLE_NEW_GAME;
 }

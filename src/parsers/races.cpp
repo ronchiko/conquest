@@ -1,3 +1,4 @@
+#if false
 
 #include <cstdio>
 #include <cstring>
@@ -88,3 +89,5 @@ Race::Race(const char* _name) {
 		growthTable[i] = 1;
 	}
 }
+
+#endif

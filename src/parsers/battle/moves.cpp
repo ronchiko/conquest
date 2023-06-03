@@ -1,4 +1,4 @@
-
+#if false
 #include <map>
 
 #include "moves.h"
@@ -382,3 +382,5 @@ void Moves::load(void) {
 	delete magical;
 	delete stealth;
 }
+
+#endif

@@ -1,3 +1,4 @@
+#if false
 
 #include <cstring>
 #include <iostream>
@@ -184,3 +185,5 @@ void Item::load(void){
 
 	std::cout << "\033[32m[Loaded " << Item::all.size() << " items]\033[0m\n";
 }
+
+#endif

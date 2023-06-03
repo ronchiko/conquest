@@ -1,10 +1,11 @@
+#if false
 
-#include <cstring>
 #include <cmath>
+#include <cstring>
 
 #include "character.h"
-#include "parsing.h"
 #include "input.h"
+#include "parsing.h"
 
 enum Menu_e {
 	MENU_NAME,
@@ -233,3 +234,4 @@ Character* create_character(Screen& screen) {
 }
 
 
+#endif

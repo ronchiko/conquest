@@ -1,5 +1,12 @@
 # CMake
 bin/
+.build/
+obj/
+out/
+
+# IDE
+.vs/
+.vscode/
 
 # Binary
 conquest
@@ -36,3 +43,8 @@ conquest
 *.exe
 *.out
 *.app
+
+# Build files
+*.sln
+*.vcxproj*
+Makefile

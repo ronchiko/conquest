@@ -1,13 +1,14 @@
+#if false
 
 #include <cstring>
 #include <iostream>
-#include <sstream>
 #include <map>
+#include <sstream>
 
-#include "screen.h"
 #include "assets.h"
-#include "magic.h"
 #include "character.h"
+#include "magic.h"
+#include "screen.h"
 
 #include "parsing.h"
 
@@ -104,3 +105,5 @@ void Element::load(void) {
 		}
 	}
 }
+
+#endif
