@@ -22,7 +22,7 @@ namespace conquest {
 		}
 	}
 
-	void Screen::draw(const Rect& rectangle, const Color background, const RectPattern pattern, const Color foreground)
+	void Screen::draw(const Area& rectangle, const Color background, const RectPattern pattern, const Color foreground)
 	{
 		const auto finalX = rectangle.point.x + rectangle.size.x;
 		const auto finalY = rectangle.point.y + rectangle.size.y;
@@ -40,11 +40,11 @@ namespace conquest {
 				const bool isVerticalEdge = x == rectangle.point.x || finalX - 1 == x;
 
 				if(isHorizontalEdge && isVerticalEdge) {
-					current.glyph.ascii = pattern.primitive.corner;
+					current.glyph.ascii = pattern.corner;
 				} else if(isHorizontalEdge) {
-					current.glyph.ascii = pattern.primitive.horizontal;
+					current.glyph.ascii = pattern.horizontal;
 				} else if(isVerticalEdge) {
-					current.glyph.ascii = pattern.primitive.vertical;
+					current.glyph.ascii = pattern.vertical;
 				}
 
 				// Only draw if we are at the edge.
@@ -82,7 +82,7 @@ namespace conquest {
 		}
 	}
 
-	void Screen::fill(const Rect& rectangle, const Color background, const char glyph, const Color foreground)
+	void Screen::fill(const Area& rectangle, const Color background, const char glyph, const Color foreground)
 	{
 		const auto finalX = std::min(rectangle.point.x + rectangle.size.x, width() - 1);
 		const auto finalY = std::min(rectangle.point.y + rectangle.size.y, height() - 1);

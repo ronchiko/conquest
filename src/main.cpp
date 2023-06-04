@@ -46,11 +46,7 @@ int main(void)
 		Input::get();
 
 		conquest::Screen screen(conquest::v2<conquest::uint32>{ 0, 0 });
-		
-		std::cout << "Loading title screen" << std::endl;
-		
 		const auto titleResult = conquest::startTitle(screen);
-
 		if(titleResult == conquest::TitleScreenResult::Exit) {
 			return 0;
 		}

@@ -32,14 +32,14 @@ namespace conquest {
 		void draw(v2<uint32> point, const std::string& message, Color foreground, Color background);
 
 		/**
-		 * Draw a rectangle to the screen.
+		 * Draw a rectangular area to the screen.
 		 *
-		 * @param rect - The rect to draw
+		 * @param area - The area to draw
 		 * @param background - The background color.
 		 * @param pattern - The pattern of the rectangle edges.
 		 * @param foreground - The foreground color.
 		 */
-		void draw(const Rect& rect, Color background, RectPattern pattern, Color foreground);
+		void draw(const Area& area, Color background, RectPattern pattern, Color foreground);
 
 		/**
 		 * Draws an asset to the screen.
@@ -59,7 +59,7 @@ namespace conquest {
 		 * @param glyph - The glyph to put inside the rectangle.
 		 * @param foreground - The foreground color of the glyph.
 		 */
-		void fill(const Rect& rect, Color background, char glyph, Color foreground);
+		void fill(const Area& rect, Color background, char glyph, Color foreground);
 	};
 
 }
