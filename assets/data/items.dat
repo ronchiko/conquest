@@ -1,8 +1,8 @@
 
 # Rarities: COMMON/UNCOMMON/RARE/VERY_RARE/EPIC/LEGENDARY/INTRO/MYTHICAL
-# Note that INTRO/MYTHICAL items cannot have to be given explicitly 
+# Note that INTRO/MYTHICAL items cannot be randomly found and have to be given explicitly 
 
-item Health_Potion
+item Health_Potion:
 	HEAL 		+50
 	CONSUME 	1
 	RATE		COMMON
@@ -10,26 +10,26 @@ item Health_Potion
 	DESC		"Heals 50 HP"
 
 # Some items have no use beyond selling them for some quick cash
-item SHINY_ROCK
+item SHINY_ROCK:
 	RATE		COMMON
 	COST 		10
 	DESC		"Maybe some-one would buy it"
 
-item Health_Tonic
+item Health_Tonic:
 	HEAL 		+100
 	CONSUME		1
 	RATE		UNCOMMON
 	COST		30
 	DESC		"Heals 100 HP"
 
-item Large_Tonic
+item Large_Tonic:
 	HEAL		+50
 	CONSUME		3
 	RATE		UNCOMMON
 	COST		50
 	DESC		"Big health potion that can be used 3 times"
 
-item Devils_Deal
+item Devils_Deal:
 	BASE_STRG	%120
 	BASE_INT	%120
 	RATE		EPIC
@@ -38,7 +38,7 @@ item Devils_Deal
 	DESC		"Boosts the attacking stats of the holder but turns him into a demon"
 	%DEMON_BLOOD
 
-item Angels_Brew
+item Angels_Brew:
 	HEAL		%100
 	BASE_HP		%200
 	CONSUME		1

@@ -1,7 +1,6 @@
 
 #include "conquest/graphics/asset.h"
 
-#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <numeric>
@@ -9,18 +8,22 @@
 #include <vector>
 
 namespace conquest {
-	inline const std::filesystem::path LOCAL_ASSETS_FOLDER = "assets/";
-
 	Asset Asset::load(const std::string& path, const AssetType type)
 	{
-		const auto assetPath = LOCAL_ASSETS_FOLDER / path;
+		const auto assetPath = path;
 		std::fstream fileStream(assetPath);
 
 		// First we read all the lines from the files.
 		std::string currentLine;
 		std::vector<std::string> lines;
 		while(std::getline(fileStream, currentLine)) {
+			// For non art assets the newline is needed
+			if(AssetType::Art != type) {
+				currentLine += "\n";
+			}
+
 			lines.push_back(currentLine);
+			
 		}
 
 		// If we are parsing an art asset we have to align all the lines to be same length
@@ -46,12 +49,14 @@ namespace conquest {
 													[](const auto& acc, const auto& add) { return acc + add.size(); });
 
 		// Now put the lines into a buffer.
-		Buffer<char> buffer(totalAssetSize);
+		Buffer<char> buffer(totalAssetSize + 1);
 		char *current = buffer.data();
 
 		for(auto& line : lines) {
 			current = std::uninitialized_copy_n(line.begin(), line.size(), current);
 		}
+
+		buffer[totalAssetSize] = '\0';
 
 		return Asset(type, std::move(buffer), width, static_cast<uint32>(lines.size()));
 	}

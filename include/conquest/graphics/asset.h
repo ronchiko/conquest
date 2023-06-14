@@ -1,11 +1,15 @@
 #pragma once
 
 #include <string>
+#include <filesystem>
 
 #include "conquest/buffer.h"
 #include "conquest/types.h"
 
 namespace conquest {
+	inline const std::filesystem::path LOCAL_ASSETS_FOLDER = "assets/";
+
+
 	enum class AssetType
 	{
 		Text,

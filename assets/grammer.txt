@@ -1,0 +1,5 @@
+object = (NEWLINE*) KEYWORD IDENTIFIER COLON IDENTIFIER? tag* NEWLINE (attribute)+ NEWLINE
+attribute = IDENTIFIER attribute_list NEWLINE
+tag = PERCENT IDENTIFIER PERCENT
+attribute_list = literal (COMMA literal)+
+literal = (IDENTIFIER|STRING|(PLUS|MINUS)? INT|DECIMAL)   

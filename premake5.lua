@@ -5,7 +5,7 @@ require "os"
 WKS_DIR = os.getcwd()
 
 language "C++"
-cppdialect "C++17"
+cppdialect "C++20"
 cdialect "C17"
 
 workspace "Conquest"
@@ -46,7 +46,8 @@ local output_dir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 project "Conquest"
     filter {}
     files {
-        "src/**.cpp"
+        "src/**.cpp",
+        "include/**.h"
     }
 
     targetdir ("%{wks.location}/out/" .. output_dir .. "/%{prj.name}")

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 #include "conquest/types.h"
 
 namespace conquest {
@@ -14,7 +16,6 @@ namespace conquest {
 		Magenta,
 		Grey,
 		
-
 		// Bright colors, starts at 9 because there is not bright black...
 		BrightRed = 0x9,
 		BrightGreen,
@@ -27,6 +28,13 @@ namespace conquest {
 	};
 
 	inline constexpr auto BRIGHT_BIT = 0b1000;
+
+	/**
+	   Gets a color from its name.
+
+	   @param name - The name of the color to get.
+	 */
+	Color getColorByName(const std::string& name);
 
 	/**
 	 * Represents a pixel in a screen.

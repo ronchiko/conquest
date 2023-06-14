@@ -1,12 +1,12 @@
 
-equipment Ring_Of_Fury
+equipment Ring_Of_Fury:
 	TYPE	RING
 	RATE	COMMON
 	STRG	1
 	DESC	"Boosts the strength of the user"
 	COST	28
 
-equipment Chain_Necklace
+equipment Chain_Necklace:
 	TYPE	NECKLACE
 	RATE	COMMON
 	SPD	-1
@@ -14,21 +14,21 @@ equipment Chain_Necklace
 	DESC	"Heavy necklace will reduce physical damage"
 	COST	20
 
-equipment Heart_Of_The_Swamp
+equipment Heart_Of_The_Swamp:
 	TYPE	NECKLACE
 	RATE	VERY_RACE
 	COST	59
 	DESC	"Gives poisen immunity"
 	%POISON_IMMUNE
 
-equipment Rusty_Token
+equipment Rusty_Token:
 	TYPE	ARTEFACT
 	RATE	UNCOMMON
 	+Iron_Defence
 	DESC	"Gives access to the attack Iron Defence"
 	COST	31
 	
-equipment Lucky_Gloves
+equipment Lucky_Gloves:
 	TYPE	GLOVES
 	RATE	COMMON
 	COST	41

@@ -12,7 +12,7 @@
 #	%<trait_name>
 #
 #-------------- Intro weapons -------------------------
-weapon Wooden_Sword
+weapon Wooden_Sword:
 	TYPE 	SWORD
 	RATE	INTRO
 	DMG 	1
@@ -20,7 +20,7 @@ weapon Wooden_Sword
 	DESC	"A wooden sword used for combat"
 	COST	10
 	
-weapon Rusty_Shield
+weapon Rusty_Shield:
 	TYPE 	SWORD
 	RATE 	INTRO
 	DMG 	0
@@ -28,7 +28,7 @@ weapon Rusty_Shield
 	DESC	"Might get you out of a tough spots"
 	COST	10
 
-weapon Wooden_Staff
+weapon Wooden_Staff:
 	TYPE STAFF
 	ELEM Arcane
 	RATE INTRO
@@ -37,7 +37,7 @@ weapon Wooden_Staff
 	DESC	"Weak staff with arcane abillities"
 	COST	10
 
-weapon Rusty_Dagger
+weapon Rusty_Dagger:
 	TYPE 	DAGGER
 	RATE 	INTRO
 	DMG 	1
@@ -45,7 +45,7 @@ weapon Rusty_Dagger
 	DESC	"Old, rusty dagger for doing swift attacks"
 	COST 	10
 
-weapon Village_Axe
+weapon Village_Axe:
 	TYPE 	AXE
 	RATE 	INTRO
 	DMG 	2
@@ -53,7 +53,7 @@ weapon Village_Axe
 	DESC	"Commonly used by villagers to guard thier towns"
 	COST	10	
 
-weapon Wooden_Bow
+weapon Wooden_Bow:
 	TYPE 	BOW
 	RATE 	INTRO
 	DMG 	1
@@ -65,7 +65,7 @@ weapon Wooden_Bow
 
 #-------------- Common encouter pool weapons -----------
 
-weapon Wooden_Shield
+weapon Wooden_Shield:
 	TYPE	SHIELD
 	RATE	COMMON
 	DMG	0
@@ -73,7 +73,7 @@ weapon Wooden_Shield
 	COST	15
 	DESC	"Circular shield made out of wood"	
 
-weapon Bronze_Axe
+weapon Bronze_Axe:
 	TYPE 	AXE
 	RATE	COMMON
 	DMG	2
@@ -81,7 +81,7 @@ weapon Bronze_Axe
 	COST	25
 	DESC	"Bronze axe commonly used for chopping trees"
 
-weapon Old_Orb
+weapon Old_Orb:
 	TYPE 	ORB
 	RATE 	COMMON
 	DMG 	1
@@ -89,7 +89,7 @@ weapon Old_Orb
 	COST	20
 	DESC	"An oddly round rock with magical capabilities"
 
-weapon Guards_Spear
+weapon Guards_Spear:
 	TYPE 	SPEAR
 	RATE 	COMMON
 	DMG 	1
@@ -97,7 +97,7 @@ weapon Guards_Spear
 	COST	21
 	DESC	"Thin and long spear used by guards"
 	
-weapon Harvesting_Scyth
+weapon Harvesting_Scyth:
 	TYPE 	SCYTH
 	RATE 	COMMON
 	DMG 	2
@@ -105,7 +105,7 @@ weapon Harvesting_Scyth
 	COST	18
 	DESC	"Sometimes tools have more uses then what they were designed for..."
 
-weapon Short_Musket
+weapon Short_Musket:
 	TYPE	MUSKET
 	RATE	COMMON
 	DMG	3
@@ -113,7 +113,7 @@ weapon Short_Musket
 	COST	32
 	DESC	"Short narrow musket that can fire bullets in a slow rate"
 
-weapon Guards_Crossbow
+weapon Guards_Crossbow:
 	TYPE	CROSSBOW
 	RATE	COMMON
 	DMG	1
@@ -121,7 +121,7 @@ weapon Guards_Crossbow
 	COST	26
 	DESC	"Crossbow used by guards who wish to keep thier distance"
 
-weapon Bronze_Sword
+weapon Bronze_Sword:
 	TYPE	SWORD
 	RATE	COMMON
 	DMG	2
@@ -129,7 +129,7 @@ weapon Bronze_Sword
 	COST	23
 	DESC	"A small bronze sword usually used in street combat"
 
-weapon Thieving_Katar
+weapon Thieving_Katar:
 	TYPE	DAGGER
 	RATE	COMMON
 	DMG	2
@@ -138,7 +138,7 @@ weapon Thieving_Katar
 	DESC	"A katar commonly found among thieves"
 	+Sneak_Attack	
 
-weapon Butchering_Knife
+weapon Butchering_Knife:
 	TYPE	DAGGER
 	RATE	COMMON
 	DMG	1
@@ -147,7 +147,7 @@ weapon Butchering_Knife
 	DESC	"Does extra damage to animals and beasts"
 	%BUTCHER	# Does extra damage to beasts and animals
 
-weapon Bandit_Blade
+weapon Bandit_Blade:
 	TYPE	SWORD
 	RATE	COMMON
 	DMG	2
@@ -155,7 +155,7 @@ weapon Bandit_Blade
 	COST	20
 	DESC	"A blade found among bandits"
 
-weapon Gnomish_Spear
+weapon Gnomish_Spear:
 	TYPE	SPEAR
 	RATE	COMMON
 	DMG	1
@@ -163,7 +163,7 @@ weapon Gnomish_Spear
 	COST	16
 	DESC	"For some reason gnomes prefer to used spears"
 
-weapon Oakwood_Bow
+weapon Oakwood_Bow:
 	TYPE	BOW
 	RATE	COMMON
 	DMG	2
@@ -171,7 +171,7 @@ weapon Oakwood_Bow
 	COST	22
 	DESC	"A bow made out of oak trees"
 
-weapon Orb_Of_The_Forset
+weapon Orb_Of_The_Forset:
 	TYPE	ORB
 	ELEM	Nature
 	DMG	1
@@ -179,7 +179,7 @@ weapon Orb_Of_The_Forset
 	COST	37
 	DESC	"Sometimes rocks near old trees recieve some of thier powers"
 
-weapon Woodlen_Arm
+weapon Woodlen_Arm:
 	TYPE	STAFF
 	ELEM	Nature
 	DMG	2
@@ -189,7 +189,7 @@ weapon Woodlen_Arm
 	+Vine_Attack
 
 #-------------------------------------------------------
-weapon Arcane_Orb
+weapon Arcane_Orb:
 	TYPE ORB
 	RATE UNCOMMON
 	ELEM Arcane
@@ -197,14 +197,14 @@ weapon Arcane_Orb
 	DEF 4
 	+Aracne_Blast
 
-weapon Dragonsteel_Sword
+weapon Dragonsteel_Sword:
 	TYPE SWORD
 	RATE RARE
 	DMG 13
 	DEF 6
 	%Dragon_Slayer
 
-weapon Hellbringer
+weapon Hellbringer:
 	TYPE AXE
 	ELEM Demonic
 	RATE EPIC
@@ -213,7 +213,7 @@ weapon Hellbringer
 	+HELLRAISER
 	+REFORM
 
-weapon Angelblade
+weapon Angelblade:
 	TYPE SWORD
 	ELEM Holy
 	RATE EPIC
@@ -223,7 +223,7 @@ weapon Angelblade
 	+HOLY_SLASH
 	+HOLY_STRIKE
 
-weapon Scyth_Of_The_Collector
+weapon Scyth_Of_The_Collector:
 	TYPE SCYTH
 	RATE LEGENDARY
 	ELEM Dark

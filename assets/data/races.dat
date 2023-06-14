@@ -1,0 +1,103 @@
+
+# How to define a race:
+# <name>:
+#	<stat> <base_modifacation>, <growth_rate>
+#	+<trait_name>
+#
+# Commonly races have +2 total total buff.
+
+# Humans start with fairly basic stats and no blessings or curses
+race Human:
+	HP    0, 1.0
+	ENRG  0, 1.1
+	FAME  0, 1.1
+	STRG  1, 1.0
+	DEFC  0, 0.95
+	INT   2, 1.2
+	RES  -1, 0.85
+	SPD   0, 1.0
+	STLH  0, 0.95
+	LUCK  0, 1.05
+
+# Elves are more effective in magic combat, but are weak to the darkness
+race Elf:
+	HP   -1, 0.9
+	ENRG  0, 1.0
+	FAME  0, 1.0
+	STRG  0, 0.95
+	DEFC  0, 0.95
+	INT   2, 1.4
+	RES   2, 1.2
+	SPD   0, 1.1
+	STLH -2, 0.75
+	LUCK  1, 1.2
+	# +DIVINE_BEING
+
+# Orcs inflict a lot of physical damage, but are slow and weak in magic. 
+race Orc:
+	HP    1, 1.0
+	ENRG -1, 1.0
+	FAME  0, 1.0
+	STRG  2, 1.3
+	DEFC  1, 1.2
+	INT  -1, 0.9
+	RES   1, 1.0
+	SPD  -2, 0.8
+	STLH  0, 1.0
+	LUCK  0, 1.0
+
+# Goblins are inflict less damage then normal but are increadibly evasive and sneaky
+race Goblin:
+	HP   -2, 0.8
+	ENRG  0, 1.0
+	FAME -1, 0.9
+	STRG -2, 0.6
+	DEFC -2, 0.4
+	INT	  0, 1.1
+	RES	  0, 1.1
+	SPD	  4, 2.0
+	STLH  4, 1.8
+	LUCK  0, 1.0
+	# +MAGIC_BAG
+	# +WEAK_ARMS
+
+# Ogres shine in physical combat but crumble under magic attacks
+race Ogre:
+	HP	  3, 2.0
+	ENRG  0, 1.0
+	FAME -1, 1.0
+	STRG  4, 2.3
+	DEFC  3, 2.1
+	INT  -4, 0.6
+	RES  -2, 0.6
+	SPD  -2, 0.7
+	STLH  0, 1.0
+	LUCK  0, 1.0
+
+# Dwarfs are more bulky then humans but much slower.
+race Dwarf:
+	HP    2, 1.5
+	ENRG -1, 0.9
+	FAME  0, 1.0
+	STRG  0, 1.0
+	DEFC  1, 1.4
+	INT	  0, 1.1
+	RES	  1, 1.3
+	SPD	 -3, 0.7
+	STLH  1, 1.0
+	LUCK  0, 1.1
+
+# Vampires are increadibly fragile but inflicts serious damage.
+race Vampire:
+	HP   -2, 0.8
+	ENRG  1, 1.1
+	FAME -2, 0.75
+	STRG  0, 1.1
+	DEFC -2, 0.9
+	INT   3, 1.1
+	RES  -1, 0.9
+	SPD   2, 1.2
+	STLH  2, 1.1
+	LUCK -1, 1.3
+	# +BLOOD_DRINKER
+ 
