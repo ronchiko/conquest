@@ -111,7 +111,7 @@ InsertTrailingCommas: None
 KeepEmptyLinesAtTheStartOfBlocks: false
 LambdaBodyIndentation: Signature
 
-NamespaceIndentation: All
+NamespaceIndentation: None
 
 ReflowComments: true
 # RemoveSemicolon: true 
