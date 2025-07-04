@@ -1,0 +1,6 @@
+[submodule "thirdparty/ftxui"]
+	path = thirdparty/ftxui
+	url = https://github.com/ArthurSonzogni/FTXUI.git
+[submodule "thirdparty/tomlplusplus"]
+	path = thirdparty/tomlplusplus
+	url = https://github.com/marzer/tomlplusplus.git

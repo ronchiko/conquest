@@ -8,10 +8,6 @@ out/
 .vs/
 .vscode/
 
-# Binary
-conquest
-!include/conquest
-
 # Prerequisites
 *.d
 
@@ -49,3 +45,6 @@ conquest
 *.sln
 *.vcxproj*
 Makefile
+
+CMakeFiles
+cmake_install.cmake
