@@ -1,0 +1,4 @@
+weapon_types = "data/weapon_types.toml"
+races = "data/races.toml"
+professions = "data/professions.toml"
+

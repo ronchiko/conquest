@@ -1,0 +1,24 @@
+
+[Warrior]
+Name = "Warrior"
+Description = "A fighter whos specializes in using a sword and shield."
+Power = {base = 2, growth = 1.3}
+Fortitude = {base = 2, growth = 1.2} 
+Fame = {base = 0, growth = 1.1}
+Weapons = ["Sword", "Shield", "Axe", "Hatchet"]
+
+[Wizard]
+Name = "Wizard"
+Description = "A magic user that casts spells to fight."
+Intellect = {base = 2, growth = 1.3}
+Resilience = {base = 2, growth = 1.2} 
+Fame = {base = 0, growth = 1.1}
+Weapons = ["Staff"]
+
+[Royal]
+Name = "Royal"
+Description = "Born to an influencial high family, this class is blessed with great fortune."
+Intellect = {base = 1, growth = 1.1}
+Fame = {base = 2, growth = 1.3}
+Fortune = {base = 2, growth = 1.2}
+Weapons = ["Sword", "Bow"]

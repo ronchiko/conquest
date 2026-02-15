@@ -1,0 +1,44 @@
+#### This is the generic move template #####
+
+# First we have to describe what kind of type of move we are creating, and tell the
+# engine where to store it
+MoveClass = "Basic"
+Name = "Custom Move"
+Description = "Move description"
+
+# Since we have chosen to make a base move - the format is as follow
+# First we define the base of the move, meaning the basic infomration about the move
+[Move.Base]
+Cost = 10					# Cost in energy
+Targets = "SingleEnemy"		# What targeting type to prompt
+
+# Requires a move 
+[Move.0]
+Target = "Selected"		# What this stage effects
+Accuracy = 100
+AttackType = "Physical" # Either physical or magical (If not persent set to effect)
+Element = "Fire"		# One of the elements (Also, optional, default is None)
+Damage = 10				# Base damage
+Effects = ["Burn", "Poison"]
+Augments = {speed = 1, attack = -1}
+Repeat = 5				# Either a dict of {min, max} or the number of times this stage is repeated, and optional
+
+# Define the second stage of the move, this is required
+[Move.1]					# Second stage
+Target = "User"
+Augments = {spattack=2}
+Effects = ["Enlightend"]
+
+[Move.Disable.0]		# By default a move is always usable
+Status = "Paralyzed"
+
+# If this is missing, then the move is always allowed, if at least one allowed conditions are present, the move will be
+# unusable
+# You can define multiple non-bound conditions add move rules with different numbers at the end (IE, Move.Enable.1, etc...)
+[Move.Enable.0]		
+Status = "Enlightend"
+
+# Put an enable rule on a specific stage of the move
+[Move.1.Enable.0]
+Target = "User"
+Status = "MagicBoost"

@@ -1,0 +1,23 @@
+
+[Fire]
+Name = "Fire"
+Color = "BrightYellow"
+Water = 0.7
+Ice = 1.3
+
+[Water]
+Name = "Water"
+Color = "BrightBlue"
+Ice = 0.7
+Fire = 1.3
+
+[Ice]
+Name = "Ice"
+Color = "Cyan"
+Water = 1.3
+Fire = 0.7
+
+[Draconic]
+Name = "Draconic"
+Color = "BrightRed"
+Draconic = 1.3

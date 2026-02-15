@@ -1,0 +1,16 @@
+
+Name = "My Abilitiy"
+Description = "Does something"
+
+# Possible event interventions.
+# OnHit - When the characater takes damage
+# AfterAction - After the character acts
+# BeforeAction - Before the character acts
+# BattleStart - When a new battle begin
+# Custom - For specific types only, they define their own events.
+
+[Event.OnHit.0]
+Type = "MyAbilityAttributes"
+Param1 = 1
+Param2 = 2
+# Custom parameters for that attribute

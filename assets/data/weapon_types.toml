@@ -1,0 +1,24 @@
+
+[Sword]
+Name = "Sword"
+DualHanded = false
+
+[Shield]
+Name = "Shield"
+DualHanded = false
+
+[Hatchet]
+Name = "Hatchet"
+DualHanded = false
+
+[Axe]
+Name = "Axe"
+DualHanded = true
+
+[Staff]
+Name = "Staff"
+DualHanded = true
+
+[Bow]
+Name = "Bow"
+DualHanded = true
