@@ -4,7 +4,7 @@
 
 #include <ftxui/component/screen_interactive.hpp>
 
-#include "conquest/engine/window/internal/ModalStorage.h"
+#include "conquest/engine/ui/internal/ModalStorage.h"
 
 
 namespace conquest::window {
@@ -26,7 +26,7 @@ public:
 		m_Stack.push(activator);
 	}
 
-	void pop(bool full = false)
+	void pop(const bool full = false)
 	{
 		if(full || m_Stack.empty()) {
 			m_Screen->Exit();
@@ -35,6 +35,16 @@ public:
 
 		*m_Stack.top() = false;
 		m_Stack.pop();
+	}
+
+	std::function<void()> then_push(std::string name)
+	{
+		return [this, name = std::move(name)] { push(name); };
+	}
+
+	std::function<void()> then_pop(bool full = false)
+	{
+		return [this, full] { pop(full); };
 	}
 
 private:

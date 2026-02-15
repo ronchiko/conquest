@@ -2,8 +2,10 @@
 
 #include <ftxui/component/component.hpp>
 
-#include "conquest/engine/window/Context.h"
-#include "conquest/engine/window/internal/ModalStorage.h"
+#include "conquest/engine/SyncLoop.h"
+#include "conquest/engine/console/Console.h"
+#include "conquest/engine/ui/Context.h"
+#include "conquest/engine/ui/internal/ModalStorage.h"
 
 namespace conquest::window {
 
@@ -12,7 +14,11 @@ namespace internal
 
 struct Screen
 {
-	ftxui::ScreenInteractive screen = ftxui::ScreenInteractive::Fullscreen();
+	explicit Screen(const size_t width, const size_t height)
+	    : screen(ftxui::ScreenInteractive::FixedSize(width, height))
+	{}
+
+	ftxui::ScreenInteractive screen;
 };
 
 using ScreenPtr_t = std::unique_ptr<Screen>;
@@ -32,7 +38,12 @@ public:
 	Manager&& add(const std::string& name, Creator_t modalCreator) &&;
 
 	ResponseT& start();
-	
+
+	void post(ftxui::Event event) const
+	{
+		m_Screen->screen.PostEvent(std::move(event));
+	}
+
 private:
 	using ContextPtr_t = std::unique_ptr<Context<ResponseT>>;
 
@@ -58,7 +69,7 @@ Manager<ResponseT> manager(typename Manager<ResponseT>::Creator_t creator)
 template <typename ResponseT>
 Manager<ResponseT> Manager<ResponseT>::create(Creator_t mainComponentCreator)
 {
-	auto screen = std::make_unique<internal::Screen>();
+	auto screen = std::make_unique<internal::Screen>(engine::console::g_Instance->width(), engine::console::g_Instance->height());
 	auto storage = std::make_unique<internal::ModalStorage>();
 	auto context = std::make_unique<Context<ResponseT>>(screen->screen, *storage);
 
@@ -89,7 +100,10 @@ Manager<ResponseT>&& Manager<ResponseT>::add(const std::string& name, Creator_t 
 template <typename ResponseT>
 ResponseT& Manager<ResponseT>::start()
 {
-	m_Screen->screen.Loop(m_MainComponent);
+	const auto loop = engine::SyncLoop(&m_Screen->screen);
+	m_Screen->screen.PostEvent(ftxui::Event::Custom);
+
+	loop.run(m_MainComponent);
 	return *m_Context;
 }
 
