@@ -1,8 +1,8 @@
-#include <ftxui/dom/elements.hpp>
+﻿#include <ftxui/dom/elements.hpp>
 #include <ftxui/component/component.hpp>
 
-#include "conquest/engine/window/Manager.h"
-#include "conquest/engine/window/styles/Button.h"
+#include "conquest/engine/ui/Manager.h"
+#include "conquest/engine/ui/styles/Button.h"
 #include "conquest/data/Package.h"
 
 #include "conquest/scenes/title/TitleScreen.h"
