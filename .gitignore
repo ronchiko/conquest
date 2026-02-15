@@ -48,3 +48,6 @@ Makefile
 
 CMakeFiles
 cmake_install.cmake
+
+# Claude
+.claude/
