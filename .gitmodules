@@ -4,3 +4,12 @@
 [submodule "thirdparty/tomlplusplus"]
 	path = thirdparty/tomlplusplus
 	url = https://github.com/marzer/tomlplusplus.git
+[submodule "thirdparty/sdl"]
+	path = thirdparty/sdl
+	url = https://github.com/libsdl-org/SDL.git
+[submodule "thirdparty/sdl_image"]
+	path = thirdparty/sdl_image
+	url = https://github.com/libsdl-org/SDL_image.git
+[submodule "thirdparty/zip"]
+	path = thirdparty/zip
+	url = https://github.com/kuba--/zip.git
