@@ -21,11 +21,6 @@ ReferenceAlignment: Left
 BinPackArguments: false
 BinPackParameters: false
 
-IndentCaseBlocks: false
-IndentCaseLabels: false
-IndentExternBlock: Indent 
-IndentGotoLabels: false
-
 IndentAccessModifiers: false
 AccessModifierOffset: -4
 
@@ -56,7 +51,6 @@ AllowShortLambdasOnASingleLine: Inline
 AllowShortLoopsOnASingleLine: false
 
 AlwaysBreakAfterReturnType: None
-AlwaysBreakTemplateDeclarations: Yes
 
 AttributeMacros: []
 BitFieldColonSpacing: None
