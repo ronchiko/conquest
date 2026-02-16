@@ -34,6 +34,33 @@ void TextWriter::write(const SpriteMapper::SpriteIndex_t character)
 	m_Screen.setGlyph(m_Cursor.x, m_Cursor.y, { m_SpriteMapper.fetch(character), m_Foreground, m_Background });
 }
 
+void TextWriter::eraseInLine(const EraseMode mode)
+{
+	if(m_Cursor.y >= m_Screen.height()) {
+		return;
+	}
+
+	const auto blankGlyph = Glyph{ m_SpriteMapper.fetch(' '), DEFAULT_FOREGROUND, DEFAULT_BACKGROUND };
+
+	size_t start = 0;
+	size_t end = m_Screen.width();
+
+	switch(mode) {
+	case EraseMode::CursorToEnd:
+		start = m_Cursor.x;
+		break;
+	case EraseMode::StartToCursor:
+		end = m_Cursor.x + 1;
+		break;
+	case EraseMode::EntireLine:
+		break;
+	}
+
+	for(size_t x = start; x < end; ++x) {
+		m_Screen.setGlyph(x, m_Cursor.y, blankGlyph);
+	}
+}
+
 void TextWriter::setForeground(const Color &color)
 {
 	m_Foreground = color;

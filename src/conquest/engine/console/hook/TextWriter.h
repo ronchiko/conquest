@@ -11,6 +11,13 @@ namespace conquest::engine::console {
 inline constexpr Color DEFAULT_FOREGROUND = { 255, 255, 255 };
 inline constexpr Color DEFAULT_BACKGROUND = { 0, 0, 0 };
 
+enum class EraseMode : uint32_t
+{
+	CursorToEnd = 0,
+	StartToCursor = 1,
+	EntireLine = 2,
+};
+
 class TextWriter
 {
 public:
@@ -27,6 +34,11 @@ public:
 	void carriageReturn();
 
 	void write(SpriteMapper::SpriteIndex_t character);
+
+	/**
+		Erases part of the current line.
+	 */
+	void eraseInLine(EraseMode mode);
 
 	void setForeground(const Color& color);
 	void setBackground(const Color& color);

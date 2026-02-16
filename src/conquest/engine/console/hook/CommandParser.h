@@ -9,6 +9,7 @@
 #include "conquest/engine/console/hook/command/TextCommand.h"
 #include "conquest/engine/console/hook/command/ToggleCommand.h"
 #include "conquest/engine/console/hook/command/CursorCommand.h"
+#include "conquest/engine/console/hook/command/EraseCommand.h"
 #include "conquest/engine/console/hook/Commands.h"
 
 
@@ -47,7 +48,8 @@ using CommandCreator = detail::CommandsCreator<
     MoveCursorUpCommand,
     MoveCursorDownCommand,
     MoveCursorForwardCommand,
-    MoveCursorBackwardCommand
+    MoveCursorBackwardCommand,
+    EraseInLineCommand
 >;
 
 class CommandParser
