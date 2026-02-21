@@ -6,8 +6,24 @@ namespace conquest::engine::sdl {
 
 namespace {
 
+std::optional<ftxui::Event> convertSpecialKey(SDL_Keycode key)
+{
+	switch(key) {
+	case SDLK_UP:       return ftxui::Event::ArrowUp;
+	case SDLK_DOWN:     return ftxui::Event::ArrowDown;
+	case SDLK_LEFT:     return ftxui::Event::ArrowLeft;
+	case SDLK_RIGHT:    return ftxui::Event::ArrowRight;
+	case SDLK_HOME:     return ftxui::Event::Home;
+	case SDLK_END:      return ftxui::Event::End;
+	case SDLK_PAGEUP:   return ftxui::Event::PageUp;
+	case SDLK_PAGEDOWN: return ftxui::Event::PageDown;
+	case SDLK_INSERT:   return ftxui::Event::Insert;
+	case SDLK_RETURN:   return ftxui::Event::Return;
+	default:            return std::nullopt;
+	}
+}
+
 inline const std::unordered_map<SDL_Keycode, wchar_t> g_ConversionMap = {
-	{ SDLK_RETURN, L'\r' },
 	{ SDLK_ESCAPE, L'\x1B' },
 	{ SDLK_BACKSPACE, L'\b' },
 	{ SDLK_TAB, L'\t' },
@@ -85,9 +101,12 @@ inline const std::unordered_map<SDL_Keycode, wchar_t> g_ConversionMap = {
 
 std::optional<ftxui::Event> convertKeyDownEvent(const SDL_KeyboardEvent& event)
 {
+	if(auto special = convertSpecialKey(event.key)) {
+		return special;
+	}
+
 	const auto character = g_ConversionMap.find(event.key);
 	if(g_ConversionMap.end() == character) {
-		// Events that there is no point to handle.
 		return std::nullopt;
 	}
 
