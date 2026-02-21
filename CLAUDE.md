@@ -43,7 +43,9 @@ Use the following coding guidelines:
 - Use only `override` when overriding a virtual function.
 - Use `= default` or `= delete` when appropriate.
 - Do not use `using namespace` in header files.
-- 
+- Perfer enums and constants instead of magic values in the code.
+- Perfer enums over constants if multiple values are related.
+- Always use `enum class` instead of `enum`.
 - Use smart pointers for resource management.
   - Use RAII for resource management.
   - Strongly prefer unique_ptr over shared_ptr.
