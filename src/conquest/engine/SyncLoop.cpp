@@ -38,7 +38,7 @@ void SyncLoop::run(ftxui::Component root) const
 
 	sdl::EventPoller poller;
 	while(!poller.exitRequested()) {
-		if(auto event = poller.poll(); event.has_value()) {
+		while(auto event = poller.poll()) {
 			if(auto ftxuiEvent = sdl::convertEvent(event.value()); ftxuiEvent.has_value()) {
 				m_Screen->PostEvent(ftxuiEvent.value());
 			}
